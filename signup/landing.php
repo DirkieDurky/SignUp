@@ -1,3 +1,7 @@
+<?php
+require_once("db.php");
+$conn = DB::getConn();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -10,12 +14,6 @@
 <body>
     <form class="d-flex flex-column text-center align-items-center">
         <?php
-        require_once realpath(__DIR__ . '/../vendor/autoload.php');
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
-
-        $conn = new PDO("mysql:host=dirkdev.com;dbname=projects", $_ENV['USER'], $_ENV['PASS']);
-
         $sth = $conn->prepare("SELECT 1 FROM `projects`.`users` WHERE `username` = ?");
         $sth->execute([$_GET['username']]);
 

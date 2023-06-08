@@ -1,8 +1,8 @@
 <?php
-if (!isset($_SESSION['usernameError'])) $_SESSION['usernameError'] = "";
-if (!isset($_SESSION['firstnameError'])) $_SESSION['firstnameError'] = "";
-if (!isset($_SESSION['lastnameError'])) $_SESSION['lastnameError'] = "";
-if (!isset($_SESSION['passwordError'])) $_SESSION['passwordError'] = "";
+session_start();
+
+require_once("db.php");
+$conn = DB::getConn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,13 +17,7 @@ if (!isset($_SESSION['passwordError'])) $_SESSION['passwordError'] = "";
 
 <body>
     <?php
-    require_once realpath(__DIR__ . '/../vendor/autoload.php');
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-
-    $conn = new PDO("mysql:host=dirkdev.com;dbname=projects", $_ENV['USER'], $_ENV['PASS']);
-
-    if (isset($_GET['submit'])) {
+    if (isset($_POST['submit'])) {
         ValidateForm($conn);
     }
 
