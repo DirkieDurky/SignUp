@@ -10,7 +10,7 @@
 <body>
     <form class="d-flex flex-column text-center align-items-center">
         <?php
-        require_once realpath(__DIR__ . '/vendor/autoload.php');
+        require_once realpath(__DIR__ . '/../vendor/autoload.php');
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
         $dotenv->load();
 
@@ -21,7 +21,7 @@
 
         if ($sth->fetch()) {
         ?>
-            <p class="text-success mt-4">Your account was succesfully created!</p>
+            <p class="text-success mt-4">Your account was successfully created! You can manage it at https://account.dirkdev.com/manage/<?= $_GET['username'] ?></p>
 
             <a href="index.php" class="p-2 px-4 mx-auto mt-3 mw-40 btn btn-secondary">Return</a>
         <?php

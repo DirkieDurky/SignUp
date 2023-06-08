@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI}::/$1 ^(.+?)(/(.*))::\2$
+RewriteRule ^manage/(.*)$ manage/index.php [END,QSA,E=USERNAME:%3]
