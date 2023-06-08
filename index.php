@@ -68,7 +68,7 @@ if (!isset($_SESSION['passwordError'])) $_SESSION['passwordError'] = "";
         <input required autocomplete="off" id="last-name-input-field" class="input-group-text form-control text-start p-2 mt-4 mw-40" type="text" name="last-name" placeholder="Last name">
         <input required autocomplete="off" id="password-input-field" class="input-group-text form-control text-start p-2 mt-4 mw-40" type="password" name="password" placeholder="Password">
 
-        <input type="submit" id="submit" name="submit" value="Sign up" class="input-group-submit p-2 w-50 mt-4 cursor-pointer mw-40">
+        <input type="submit" id="submit" name="submit" value="Sign up" class="input-group-submit p-2 px-4 mx-auto mt-3 mw-40 btn btn-primary cursor-pointer">
     </form>
 </body>
 
