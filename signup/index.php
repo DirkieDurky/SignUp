@@ -24,17 +24,17 @@ $conn = DB::getConn();
     function ValidateForm($conn)
     {
         $sth = $conn->prepare("SELECT 1 FROM `projects`.`users` WHERE `username` = ?");
-        $sth->execute([$_GET['username']]);
+        $sth->execute([$_POST['username']]);
 
         if ($sth->fetchColumn()) {
             $_SESSION['usernameError'] = "alreadyExists";
             return;
         }
 
-        $username = $_GET['username'];
+        $username = $_POST['username'];
         try {
             $sth = $conn->prepare("INSERT INTO `projects`.`users` (`username`, `first-name`, `last-name`, `password`) VALUES (?, ?, ?, ?)");
-            $sth->execute([$_GET['username'], $_GET['first-name'], $_GET['last-name'], password_hash($_GET['password'], PASSWORD_BCRYPT)]);
+            $sth->execute([$_POST['username'], $_POST['first-name'], $_POST['last-name'], password_hash($_POST['password'], PASSWORD_BCRYPT)]);
         } catch (Exception) {
             header("Location: landing.php?username={$username}");
         }
@@ -43,7 +43,7 @@ $conn = DB::getConn();
     }
     ?>
     <h1 class="text-center mt-4 mb-5">Sign up</h1>
-    <form autocomplete="off" class="position-relative d-flex flex-column text-center align-items-center w-50 mx-auto">
+    <form method="post" autocomplete="off" class="position-relative d-flex flex-column text-center align-items-center w-50 mx-auto">
         <input type="text" style="display:none"><input type="password" style="display:none"><!--Prevent Firefox from autocompleting -->
         <input required id="username-input-field" class="input-group-text form-control text-start p-2 mt-4 mw-40" type="text" name="username" placeholder="Username">
         <div id="username-error" class="text-danger text-start w-100 mw-40" style="display: <?= (isset($_SESSION['usernameError'])) ? "block" : "none" ?>">
