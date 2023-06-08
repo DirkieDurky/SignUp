@@ -3,6 +3,11 @@ session_start();
 
 require_once("db.php");
 $conn = DB::getConn();
+
+if (!isset($_SESSION['username-error'])) $_SESSION['username-error'] = "";
+if (!isset($_SESSION['firstname-error'])) $_SESSION['firstname-error'] = "";
+if (!isset($_SESSION['lastname-error'])) $_SESSION['lastname-error'] = "";
+if (!isset($_SESSION['password-error'])) $_SESSION['password-error'] = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +32,7 @@ $conn = DB::getConn();
         $sth->execute([$_POST['username']]);
 
         if ($sth->fetchColumn()) {
-            $_SESSION['usernameError'] = "alreadyExists";
+            $_SESSION['username-error'] = "alreadyExists";
             return;
         }
 
@@ -46,9 +51,9 @@ $conn = DB::getConn();
     <form method="post" autocomplete="off" class="position-relative d-flex flex-column text-center align-items-center w-50 mx-auto">
         <input type="text" style="display:none"><input type="password" style="display:none"><!--Prevent Firefox from autocompleting -->
         <input required id="username-input-field" class="input-group-text form-control text-start p-2 mt-4 mw-40" type="text" name="username" placeholder="Username">
-        <div id="username-error" class="text-danger text-start w-100 mw-40" style="display: <?= (isset($_SESSION['usernameError'])) ? "block" : "none" ?>">
+        <div id="username-error" class="text-danger text-start w-100 mw-40">
             <?php
-            switch ($_SESSION['usernameError']) {
+            switch ($_SESSION['username-error']) {
                 case "alreadyExists":
                     echo "A user with the username you entered already exists! Choose another username";
                     break;
@@ -56,37 +61,37 @@ $conn = DB::getConn();
             ?>
         </div>
         <?php
-        unset($_SESSION['usernameError']);
+        unset($_SESSION['username-error']);
         ?>
         <input required id="firstname-input-field" class="input-group-text form-control text-start p-2 mt-4 mw-40" type="text" name="first-name" placeholder="First name">
-        <div id="firstname-error" class="text-danger text-start w-100 mw-40" style="display: <?= (isset($_SESSION['usernameError'])) ? "block" : "none" ?>">
+        <div id="firstname-error" class="text-danger text-start w-100 mw-40">
             <?php
-            switch ($_SESSION['firstnameError']) {
+            switch ($_SESSION['firstname-error']) {
             }
             ?>
         </div>
         <?php
-        unset($_SESSION['firstnameError']);
+        unset($_SESSION['firstname-error']);
         ?>
         <input required id="lastname-input-field" class="input-group-text form-control text-start p-2 mt-4 mw-40" type="text" name="last-name" placeholder="Last name">
-        <div id="lastname-error" class="text-danger text-start w-100 mw-40" style="display: <?= (isset($_SESSION['usernameError'])) ? "block" : "none" ?>">
+        <div id="lastname-error" class="text-danger text-start w-100 mw-40">
             <?php
-            switch ($_SESSION['lastnameError']) {
+            switch ($_SESSION['lastname-error']) {
             }
             ?>
         </div>
         <?php
-        unset($_SESSION['lastnameError']);
+        unset($_SESSION['lastname-error']);
         ?>
         <input required id="password-input-field" class="input-group-text form-control text-start p-2 mt-4 mw-40" type="password" name="password" placeholder="Password">
-        <div id="password-error" class="text-danger text-start w-100 mw-40" style="display: <?= (isset($_SESSION['usernameError'])) ? "block" : "none" ?>">
+        <div id="password-error" class="text-danger text-start w-100 mw-40">
             <?php
-            switch ($_SESSION['passwordError']) {
+            switch ($_SESSION['password-error']) {
             }
             ?>
         </div>
         <?php
-        unset($_SESSION['passwordError']);
+        unset($_SESSION['password-error']);
         ?>
 
         <input type="submit" id="submit" name="submit" value="Sign up" class="input-group-submit p-2 px-4 mx-auto mt-3 mw-40 btn btn-primary cursor-pointer">
