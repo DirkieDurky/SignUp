@@ -22,7 +22,6 @@ let inputFields = [
 ];
 
 for (let inputField of inputFields) {
-    console.log(inputField);
     inputField.input.on("input", () => {
         if (inputField.error.val() == "" &&
             inputField.input.val() == "") {
