@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 require_once("db.php");
@@ -17,17 +18,20 @@ if (!isset($_SESSION['password-error'])) $_SESSION['password-error'] = "";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="public/style.css">
-    <script src="main.js" defer></script>
+    <script src="public/main.js" defer></script>
 </head>
 
 <body>
     <?php
     if (isset($_POST['submit'])) {
-        ValidateForm($conn);
+        ValidateForm();
     }
 
-    function ValidateForm($conn)
+    function ValidateForm()
     {
+        global $conn;
+        global $generator;
+
         $sth = $conn->prepare("SELECT 1 FROM `projects`.`users` WHERE `username` = ?");
         $sth->execute([$_POST['username']]);
 
@@ -38,8 +42,8 @@ if (!isset($_SESSION['password-error'])) $_SESSION['password-error'] = "";
 
         $username = $_POST['username'];
         try {
-            $sth = $conn->prepare("INSERT INTO `projects`.`users` (`username`, `first-name`, `last-name`, `password`) VALUES (?, ?, ?, ?)");
-            $sth->execute([$_POST['username'], $_POST['first-name'], $_POST['last-name'], password_hash($_POST['password'], PASSWORD_BCRYPT)]);
+            $sth = $conn->prepare("INSERT INTO `projects`.`users` (`username`, `first-name`, `last-name`, `password`, `api-key`) VALUES (?, ?, ?, ?, ?)");
+            $sth->execute([$username, $_POST['first-name'], $_POST['last-name'], password_hash($_POST['password'], PASSWORD_BCRYPT)]);
         } catch (Exception) {
             header("Location: landing.php?username={$username}");
         }
@@ -94,7 +98,7 @@ if (!isset($_SESSION['password-error'])) $_SESSION['password-error'] = "";
         unset($_SESSION['password-error']);
         ?>
 
-        <input type="submit" id="submit" name="submit" value="Sign up" class="input-group-submit p-2 px-4 mx-auto mt-3 mw-40 btn btn-primary cursor-pointer">
+        <input type="submit" id="submit" name="submit" value="Sign up" class="input-group-submit p-2 px-4 mx-auto mt-4 mw-40 btn btn-primary cursor-pointer">
     </form>
 </body>
 

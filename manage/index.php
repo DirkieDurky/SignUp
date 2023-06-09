@@ -13,7 +13,7 @@ if ($username != "") {
     $sth->execute([$username]);
 
     $row = $sth->fetch();
-    $uidFromUsername = $row['id'];
+    if ($row) $uidFromUsername = $row['id'];
 }
 
 if ($uidFromUsername != "" && $uidFromUsername == $_SESSION['user-id']) {

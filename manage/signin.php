@@ -79,7 +79,7 @@ if (!isset($_SESSION['password-error'])) $_SESSION['password-error'] = "";
         unset($_SESSION['password-error']);
         ?>
 
-        <input type="submit" id="submit" name="submit" value="Sign up" class="input-group-submit p-2 px-4 mx-auto mt-3 mw-40 btn btn-primary cursor-pointer">
+        <input type="submit" id="submit" name="submit" value="Sign up" class="input-group-submit p-2 px-4 mx-auto mt-4 mw-40 btn btn-primary cursor-pointer">
     </form>
 </body>
 

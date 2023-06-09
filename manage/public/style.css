@@ -2,6 +2,35 @@
     max-width: 40em;
 }
 
-body {
-    background-color: red;
+.content-card-input {
+    background: #F3F4F5;
+    border-radius: 6px;
+    position: relative;
+}
+
+.copy-btn {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -0.2px;
+    color: #9DA2AD;
+    cursor: pointer;
+}
+
+.copy-btn-active {
+    color: #329656;
+}
+
+input {
+    background: inherit;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 12px;
+    height: 48px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.2px;
+    color: #26282C;
 }

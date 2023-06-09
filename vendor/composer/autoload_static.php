@@ -23,6 +23,10 @@ class ComposerStaticInit6dcdfcc933b7dd02098e2a1ab809b845
         array (
             'PhpOption\\' => 10,
         ),
+        'H' => 
+        array (
+            'Hackzilla\\PasswordGenerator\\' => 28,
+        ),
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
@@ -49,6 +53,10 @@ class ComposerStaticInit6dcdfcc933b7dd02098e2a1ab809b845
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'Hackzilla\\PasswordGenerator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hackzilla/password-generator',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (
