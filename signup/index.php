@@ -41,14 +41,15 @@ if (!isset($_SESSION['password-error'])) $_SESSION['password-error'] = "";
         }
 
         $username = $_POST['username'];
+
         try {
             $sth = $conn->prepare("INSERT INTO `projects`.`users` (`username`, `first-name`, `last-name`, `password`, `api-key`) VALUES (?, ?, ?, ?, ?)");
-            $sth->execute([$username, $_POST['first-name'], $_POST['last-name'], password_hash($_POST['password'], PASSWORD_BCRYPT)]);
+            $sth->execute([$username, $_POST['first-name'], $_POST['last-name'], password_hash($_POST['password'], PASSWORD_BCRYPT), null]);
         } catch (Exception) {
-            header("Location: landing.php?username={$username}");
+            //header("Location: landing.php?username={$username}");
         }
 
-        header("Location: landing.php?username={$username}");
+        //header("Location: landing.php?username={$username}");
     }
     ?>
     <h1 class="text-center mt-4 mb-5">Sign up</h1>

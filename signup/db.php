@@ -10,7 +10,7 @@ class DB
     static function getConn()
     {
         if (DB::$conn == null) {
-            DB::$conn = new PDO("mysql:host=dirkdev.com;dbname=projects", $_ENV['USER'], $_ENV['PASS']);
+            DB::$conn = new PDO("mysql:host=127.0.0.1;dbname=projects", $_ENV['USER'], $_ENV['PASS']);
         }
 
         return DB::$conn;
